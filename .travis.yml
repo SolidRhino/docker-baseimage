@@ -12,17 +12,17 @@ branches:
 
 script:
   # Build X86 docker image
-  - docker build -f ./x86/Dockerfile -t erikdevries/baseimage .
+  - docker build -f ./x86/Dockerfile -t solidrhino/baseimage .
 
   # Build ARM docker image
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
   - mkdir tmp
   - >
     pushd tmp &&
-    curl -L -o qemu-arm-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/v3.1.0-2/qemu-arm-static.tar.gz &&
+    curl -L -o qemu-arm-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/v4.2.0-6/qemu-arm-static.tar.gz &&
     tar xzf qemu-arm-static.tar.gz &&
     popd
-  - docker build -f ./arm/Dockerfile -t erikdevries/rpi-baseimage .
+  - docker build -f ./arm/Dockerfile -t solidrhino/rpi-baseimage .
 
 after_success:
 # push image
@@ -30,11 +30,11 @@ after_success:
   if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 
-    docker tag erikdevries/baseimage erikdevries/baseimage:latest
-    docker tag erikdevries/baseimage erikdevries/baseimage:$TRAVIS_BUILD_NUMBER
-    docker push erikdevries/baseimage
+    docker tag solidrhino/baseimage solidrhino/baseimage:latest
+    docker tag solidrhino/baseimage solidrhino/baseimage:$TRAVIS_BUILD_NUMBER
+    docker push solidrhino/baseimage
 
-    docker tag erikdevries/rpi-baseimage erikdevries/rpi-baseimage:latest
-    docker tag erikdevries/rpi-baseimage erikdevries/rpi-baseimage:$TRAVIS_BUILD_NUMBER
-    docker push erikdevries/rpi-baseimage
+    docker tag solidrhino/rpi-baseimage solidrhino/rpi-baseimage:latest
+    docker tag solidrhino/rpi-baseimage solidrhino/rpi-baseimage:$TRAVIS_BUILD_NUMBER
+    docker push solidrhino/rpi-baseimage
   fi

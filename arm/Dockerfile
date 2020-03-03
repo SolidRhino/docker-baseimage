@@ -1,5 +1,5 @@
-FROM arm32v6/alpine:3.10
-MAINTAINER Erik de Vries <docker@erikdevries.nl>
+FROM arm32v6/alpine:latest
+LABEL maintainer="Solid Rhino"
 
 # qemu arm static binary
 COPY tmp/qemu-arm-static /usr/bin/qemu-arm-static

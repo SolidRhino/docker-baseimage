@@ -1,5 +1,5 @@
-FROM alpine:3.10
-MAINTAINER Erik de Vries <docker@erikdevries.nl>
+FROM alpine:latest
+LABEL maintainer="Solid Rhino"
 
 # root filesystem
 COPY rootfs /
