@@ -1,10 +1,10 @@
-sudo: false
+os: linux
 dist: trusty
 
 services:
 - docker
 
-language: bash
+language: shell
 
 branches:
   only:
