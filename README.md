@@ -1,6 +1,6 @@
 # Docker Alpine base image with S6 overlay for X86 and ARM 
 
-[![Build Status](https://travis-ci.org/edv/docker-baseimage.svg?branch=master)](https://travis-ci.org/edv/docker-baseimage)
+[![Build Status](https://travis-ci.com/SolidRhino/docker-baseimage.svg?branch=master)](https://travis-ci.com/SolidRhino/docker-baseimage)
 
 Based on Alpine with the S6 overlay to be able to run processes with custom UID (user id) and GID (group id). This prevents all kinds of problems with external mountpoints and incorrect user permissions.
 
@@ -26,12 +26,12 @@ docker build -f ./arm/Dockerfile -t rpi-baseimage .
 
 For **X86** based images use the following:
 ```
-FROM erikdevries/baseimage:latest
+FROM solidrhino/baseimage:latest
 ```
 
 For **ARM** (e.g. Raspberry Pi) based images use the following:
 ```
-FROM erikdevries/rpi-baseimage:latest
+FROM solidrhino/rpi-baseimage:latest
 ```
 
 With this base image you get a system that includes Alpine Linux with S6 overlay installed. A single script is installed with this base image, namely to create a custom user (abc with UID = 1000) and group (abc with GID = 1000).
